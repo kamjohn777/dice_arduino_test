@@ -1,0 +1,276 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #151515;
+  color: white;
+}
+
+.game {
+  min-height: 100vh;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.eyebrow {
+  margin: 0 0 8px;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: #d6aa3d;
+  font-weight: bold;
+}
+
+h1 {
+  margin: 0;
+  font-size: clamp(42px, 8vw, 80px);
+  letter-spacing: 3px;
+}
+
+.table {
+  width: min(850px, 100%);
+  min-height: 520px;
+  border-radius: 28px;
+  background: #155b45;
+  border: 10px solid #252525;
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.5),
+    inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+.table::before {
+  content: "";
+  position: absolute;
+  inset: 18px;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  pointer-events: none;
+}
+
+.status {
+  position: absolute;
+  top: 30px;
+  left: 35px;
+
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  font-size: 12px;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+.status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #e0b43c;
+  box-shadow: 0 0 10px rgba(224, 180, 60, 0.7);
+}
+
+.dice-area {
+  perspective: 800px;
+  margin-top: 20px;
+}
+
+.die {
+  width: 170px;
+  height: 170px;
+}
+
+.die-face {
+  width: 100%;
+  height: 100%;
+
+  background: #e8e1d2;
+  border-radius: 24px;
+
+  position: relative;
+
+  box-shadow:
+    inset -8px -10px 0 rgba(0, 0, 0, 0.12),
+    0 18px 30px rgba(0, 0, 0, 0.35);
+}
+
+.pip {
+  position: absolute;
+
+  width: 25px;
+  height: 25px;
+
+  background: #181818;
+  border-radius: 50%;
+
+  transform: translate(-50%, -50%);
+}
+
+/* Pip positions */
+
+.pip-1 {
+  top: 50%;
+  left: 50%;
+}
+
+.pip-2 {
+  top: 25%;
+  left: 25%;
+}
+
+.pip-3 {
+  top: 75%;
+  left: 75%;
+}
+
+.pip-4 {
+  top: 25%;
+  left: 75%;
+}
+
+.pip-5 {
+  top: 75%;
+  left: 25%;
+}
+
+.pip-6 {
+  top: 50%;
+  left: 25%;
+}
+
+.rolling {
+  animation: diceRoll 0.6s ease-in-out;
+}
+
+@keyframes diceRoll {
+
+  0% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+  20% {
+    transform: rotate(-12deg) translateY(-20px);
+  }
+
+  40% {
+    transform: rotate(12deg) translateY(-10px);
+  }
+
+  60% {
+    transform: rotate(-8deg) translateY(-15px);
+  }
+
+  80% {
+    transform: rotate(5deg) translateY(-5px);
+  }
+
+  100% {
+    transform: rotate(0deg) translateY(0);
+  }
+
+}
+
+.roll-display {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.roll-display span {
+  font-size: 11px;
+  letter-spacing: 3px;
+  opacity: 0.65;
+}
+
+.roll-display strong {
+  font-size: 58px;
+  line-height: 1;
+  color: #e0b43c;
+  margin-top: 8px;
+}
+
+.instruction {
+  margin-top: 30px;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 4px;
+  color: white;
+}
+
+.history {
+  width: min(850px, 100%);
+  margin-top: 30px;
+}
+
+.history h2 {
+  font-size: 13px;
+  letter-spacing: 3px;
+  margin-bottom: 12px;
+  color: #aaa;
+}
+
+.history-list {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.history-roll {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 8px;
+
+  background: #292929;
+  border: 1px solid #444;
+
+  font-weight: bold;
+}
+
+.empty {
+  color: #777;
+  font-size: 14px;
+}
+
+@media (max-width: 600px) {
+
+  .game {
+    padding: 20px;
+  }
+
+  .table {
+    min-height: 450px;
+  }
+
+  .die {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pip {
+    width: 20px;
+    height: 20px;
+  }
+
+}
