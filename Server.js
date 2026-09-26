@@ -5,6 +5,7 @@ const app = express();
 const PORT = 3000;
 
 let latestRoll = null;
+let latestRollId = 0;
 
 // Middleware
 app.use(cors());
@@ -17,27 +18,26 @@ app.get("/", (req, res) => {
 
 // Receive dice roll from Arduino
 app.post("/api/roll", (req, res) => {
-
   const { roll } = req.body;
 
   latestRoll = roll;
+  latestRollId += 1;
 
-  console.log("🎲 Dice roll received:", roll);
+  console.log("🎲 Dice roll received:", roll, "| ID:", latestRollId);
 
   res.json({
     success: true,
-    roll: roll
+    roll: roll,
+    id: latestRollId,
   });
-
 });
 
 // Send latest roll to React
 app.get("/api/roll/latest", (req, res) => {
-
   res.json({
-    roll: latestRoll
+    roll: latestRoll,
+    id: latestRollId,
   });
-
 });
 
 // Start server
